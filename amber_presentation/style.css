@@ -3,63 +3,110 @@
 body {
     font-family: 'Segoe UI', sans-serif;
     min-height: 100vh;
-    background: linear-gradient(-45deg, #0f0c29, #302b63, #24243e, #0f0c29);
-    background-size: 400% 400%;
-    animation: bg 10s ease infinite;
+    background: #0f0c29;
     color: #eee;
     padding: 50px 20px;
+    overflow-x: hidden;
 }
 
-@keyframes bg {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Animated background blobs */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: float 8s ease-in-out infinite;
 }
 
-.container { max-width: 620px; margin: 0 auto; text-align: center; }
+body::before {
+    width: 400px;
+    height: 400px;
+    background: #7c3aed;
+    top: -100px;
+    right: -100px;
+}
 
-h1 { font-size: 2.5rem; margin-bottom: 5px; text-shadow: 0 0 15px rgba(150, 120, 255, 0.5); }
-.subtitle { color: #aaa; margin-bottom: 40px; font-size: 1.1rem; }
+body::after {
+    width: 350px;
+    height: 350px;
+    background: #2563eb;
+    bottom: -80px;
+    left: -80px;
+    animation-delay: 4s;
+}
 
-.buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(30px, 20px); }
+}
+
+.container { max-width: 650px; margin: 0 auto; text-align: center; }
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 5px;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa, #f472b6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle { color: #888; margin-bottom: 45px; font-size: 1.1rem; }
+
+.buttons { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 30px; }
 
 button {
-    background: rgba(255,255,255,0.08);
-    border: 2px solid rgba(255,255,255,0.25);
+    background: linear-gradient(135deg, rgba(167,139,250,0.15), rgba(96,165,250,0.15));
+    border: 1px solid rgba(255,255,255,0.15);
     color: #fff;
-    padding: 14px 22px;
-    border-radius: 12px;
+    padding: 16px 24px;
+    border-radius: 14px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s;
+    backdrop-filter: blur(10px);
 }
 
 button:hover {
-    background: rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, rgba(167,139,250,0.3), rgba(96,165,250,0.3));
     border-color: #a78bfa;
-    box-shadow: 0 0 15px rgba(167, 139, 250, 0.4);
-    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(167, 139, 250, 0.3), 0 8px 20px rgba(0,0,0,0.3);
+    transform: translateY(-3px);
 }
+
+button:active { transform: translateY(0); }
 
 .panel {
     display: none;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 14px;
-    padding: 30px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    padding: 35px;
     margin-bottom: 25px;
     text-align: left;
-    animation: fadeIn 0.3s;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    animation: slideIn 0.4s ease;
 }
 
 .panel.active { display: block; }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(15px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.panel h2 { margin-bottom: 14px; font-size: 1.2rem; color: #a78bfa; }
-.panel p { font-size: 1rem; line-height: 1.7; color: #ddd; }
+.panel h2 {
+    margin-bottom: 16px;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, #a78bfa, #60a5fa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
 
-.footer { margin-top: 35px; color: #666; font-size: 0.95rem; }
+.panel p { font-size: 1.05rem; line-height: 1.8; color: #ccc; }
+
+.footer { margin-top: 40px; color: #555; font-size: 0.95rem; }
