@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amber's Placement</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hi, I'm Amber! 👋</h1>
+        <p class="subtitle">Year 10 Work Placement</p>
+
+        <div class="buttons">
+            <button onclick="show('team')">🛡️ What Does Our Team Do?</button>
+            <button onclick="show('coding')">💻 Coding & Websites</button>
+            <button onclick="show('office')">🏢 Office Life</button>
+        </div>
+
+        <div class="panel" id="team">
+            <h2>🛡️ Our Team</h2>
+            <p>Every time someone tries to connect to their broadband at home, a request called a RADIUS request gets sent to our platform. Our job is to check if that person is allowed to connect. If they are, we let them online. If not, we block them. We handle millions of these requests every single day!</p>
+        </div>
+
+        <div class="panel" id="coding">
+            <h2>💻 Coding & Websites</h2>
+            <p>During my placement I learned how programming works and how to build websites from scratch. I used HTML, CSS and JavaScript to create cool designs and interactive pages — like this one you're looking at right now! I went from knowing nothing about code to being able to build a full website on my own.</p>
+        </div>
+
+        <div class="panel" id="office">
+            <h2>🏢 Office Life & Fun Stuff</h2>
+            <p>It wasn't all just coding! I attended real scrum team meetings where the developers plan their work for the week. I also got tours of different office sites to see how other teams work. And yes — we even played shuffleboard! It was a really fun and welcoming environment.</p>
+        </div>
+
+        <p class="footer">Thanks for listening! Any questions? 🙋</p>
+    </div>
+
+    <script>
+        function show(id) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
